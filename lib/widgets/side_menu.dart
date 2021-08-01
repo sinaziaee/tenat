@@ -77,7 +77,7 @@ class SideMenu extends StatelessWidget {
       color: light,
       child: ListView(
         children: [
-          if (ResponsiveWidget.isSmallScreen(context))
+          if (ResponsiveWidget.isSmallScreen(context)) ...[
             Column(
               children: [
                 SizedBox(
@@ -107,12 +107,13 @@ class SideMenu extends StatelessWidget {
                 ),
               ],
             ),
-          SizedBox(
-            height: 40,
-          ),
-          Divider(
-            color: lightGrey.withOpacity(.1),
-          ),
+            SizedBox(
+              height: 40,
+            ),
+            Divider(
+              color: lightGrey.withOpacity(.1),
+            ),
+          ],
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -128,6 +129,7 @@ class SideMenu extends StatelessWidget {
                       if (ResponsiveWidget.isSmallScreen(context)) {
                         Get.back();
                       }
+                      navigationController.navigateTo(itemName);
                     }
                   },
                 ),
