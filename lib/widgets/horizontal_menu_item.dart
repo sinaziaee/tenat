@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tenat/constants/controllers.dart';
-import 'package:tenat/constants/styles.dart';
-import 'package:tenat/widgets/custom_text.dart';
+import 'package:tenat/constants/style.dart';
+
+import 'custom_text.dart';
 
 class HorizontalMenuItem extends StatelessWidget {
   final String itemName;
@@ -14,61 +15,56 @@ class HorizontalMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    double _width = MediaQuery.of(context).size.width;
+
     return InkWell(
-      onTap: this.onTap,
-      onHover: (value) {
-        value
-            ? menuController.onHover(itemName)
-            : menuController.onHover("not hovering");
-      },
-      child: Obx(() {
-        return Container(
-          color: menuController.isHovering(itemName)
-              ? lightGrey.withOpacity(.1)
-              : Colors.transparent,
-          child: Row(
-            children: [
-              Visibility(
-                visible: menuController.isHovering(itemName) ||
-                    menuController.isActive(itemName),
-                child: Container(
-                  width: 6,
-                  height: 40,
-                  color: dark,
-                ),
-                maintainSize: true,
-                maintainState: true,
-                maintainAnimation: true,
-              ),
-              SizedBox(
-                width: width / 80,
-              ),
-              Padding(
-                padding: EdgeInsets.all(16),
-                child: menuController.returnIconFor(itemName),
-              ),
-              if (!menuController.isActive(itemName)) ...[
-                Flexible(
-                    child: CustomText(
-                  text: itemName,
-                  color: menuController.isHovering(itemName) ? dark : lightGrey,
-                ))
-              ] //
-              else ...[
-                Flexible(
-                  child: CustomText(
-                    text: itemName,
-                    color: dark,
-                    size: 18,
-                    weight: FontWeight.bold,
+        onTap: onTap,
+        onHover: (value) {
+          value
+              ? menuController.onHover(itemName)
+              : menuController.onHover("not hovering");
+        },
+        child: Obx(() => Container(
+              color: menuController.isHovering(itemName)
+                  ? lightGrey.withOpacity(.1)
+                  : Colors.transparent,
+              child: Row(
+                children: [
+                  Visibility(
+                    visible: menuController.isHovering(itemName) ||
+                        menuController.isActive(itemName),
+                    maintainSize: true,
+                    maintainAnimation: true,
+                    maintainState: true,
+                    child: Container(
+                      width: 6,
+                      height: 40,
+                      color: dark,
+                    ),
                   ),
-                ),
-              ]
-            ],
-          ),
-        );
-      }),
-    );
+                  SizedBox(width: _width / 88),
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: menuController.returnIconFor(itemName),
+                  ),
+                  if (!menuController.isActive(itemName))
+                    Flexible(
+                        child: CustomText(
+                      text: itemName,
+                      color: menuController.isHovering(itemName)
+                          ? dark
+                          : lightGrey,
+                    ))
+                  else
+                    Flexible(
+                        child: CustomText(
+                      text: itemName,
+                      color: dark,
+                      size: 18,
+                      weight: FontWeight.bold,
+                    ))
+                ],
+              ),
+            )));
   }
 }

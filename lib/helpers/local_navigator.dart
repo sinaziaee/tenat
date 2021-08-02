@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:tenat/constants/controllers.dart';
 import 'package:tenat/routing/router.dart';
 import 'package:tenat/routing/routes.dart';
 
-Navigator localNavigator() {
-  return Navigator(
-    key: navigationController.navigateKey,
-    initialRoute: OverViewPageRoute,
-    onGenerateRoute: generateRoute,
-  );
-}
+Navigator localNavigator() =>   Navigator(
+      key: navigationController.navigatorKey,
+      onGenerateRoute: generateRoute,
+      initialRoute: overviewPageRoute,
+    );
+
+
+

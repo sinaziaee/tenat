@@ -3,13 +3,12 @@ import 'package:get/get.dart';
 
 class NavigationController extends GetxController{
   static NavigationController instance = Get.find();
-  final GlobalKey<NavigatorState> navigateKey = GlobalKey(); // to use local navigator for app to know which navigator we're going to change screen
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
-  Future<dynamic> navigateTo(String route){
-    return navigateKey.currentState!.pushNamed(route); // adding null check to the target
+  Future<dynamic> navigateTo(String routeName){
+    return navigatorKey.currentState!.pushNamed(routeName);
   }
 
-  goBack(){
-    return navigateKey.currentState!.pop();
-  }
+  goBack() => navigatorKey.currentState!.pop();
+
 }

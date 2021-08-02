@@ -1,31 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:tenat/pages/authentication/authentication.dart';
 import 'package:tenat/pages/clients/clients.dart';
 import 'package:tenat/pages/drivers/drivers.dart';
-import 'package:tenat/routing/routes.dart';
 import 'package:tenat/pages/overview/overview.dart';
 import 'package:tenat/routing/routes.dart';
 
-// returns
-Route<dynamic> generateRoute(RouteSettings settings) {
+Route<dynamic> generateRoute(RouteSettings settings){
   switch (settings.name) {
-    case OverViewPageRoute:
-      return getPageRoute(OverViewPage());
-    case DriversPageRoute:
-      return getPageRoute(DriversPage());
-    case ClientsPageRoute:
-      return getPageRoute(ClientsPage());
-    case AuthenticationPageRoute:
-      return getPageRoute(AuthenticationPage());
+    case overviewPageRoute:
+      return _getPageRoute(OverviewPage());
+    case driversPageRoute:
+      return _getPageRoute(DriversPage());
+    case clientsPageRoute:
+      return _getPageRoute(ClientsPage());
     default:
-      return getPageRoute(OverViewPage());
+      return _getPageRoute(OverviewPage());
+
   }
 }
 
-PageRoute getPageRoute(Widget child) {
-  return MaterialPageRoute(
-    builder: (context) {
-      return child;
-    },
-  );
+PageRoute _getPageRoute(Widget child){
+  return MaterialPageRoute(builder: (context) => child);
 }
