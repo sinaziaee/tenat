@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tenat/pages/clients/clients.dart';
 import 'package:tenat/pages/drivers/drivers.dart';
+import 'package:tenat/pages/graph/graph.dart';
 import 'package:tenat/pages/overview/overview.dart';
 import 'package:tenat/routing/routes.dart';
 
-Route<dynamic> generateRoute(RouteSettings settings){
+Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case overviewPageRoute:
       return _getPageRoute(OverviewPage());
@@ -12,12 +13,13 @@ Route<dynamic> generateRoute(RouteSettings settings){
       return _getPageRoute(DriversPage());
     case clientsPageRoute:
       return _getPageRoute(ClientsPage());
+    case graphPageRoute:
+      return _getPageRoute(GraphPage());
     default:
       return _getPageRoute(OverviewPage());
-
   }
 }
 
-PageRoute _getPageRoute(Widget child){
+PageRoute _getPageRoute(Widget child) {
   return MaterialPageRoute(builder: (context) => child);
 }
